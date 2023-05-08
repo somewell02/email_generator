@@ -1,7 +1,12 @@
 <template>
-  <div></div>
+  <div class="app-wrap">
+    <router-view />
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useMailsStore } from "@/data/store/mailsStore";
 
-<style lang="scss" scoped></style>
+const mailsStore = useMailsStore();
+mailsStore.initMails();
+</script>
