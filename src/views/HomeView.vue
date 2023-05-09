@@ -21,18 +21,14 @@ import MailSmallCard from "@/components/mail/cards/MailSmallCard.vue";
 import JsonFileInput from "@/components/inputs/JsonFileInput.vue";
 
 import { useMailsStore } from "@/data/store/mailsStore";
-import { useGeneratorStore } from "@/data/store/generatorStore";
 import { useRouter } from "vue-router";
 import { Mail } from "@/types/mail";
 
 const mailsStore = useMailsStore();
-const generatorStore = useGeneratorStore();
 const router = useRouter();
 
 const editMail = (idx: number) => {
-  const mail = mailsStore.mails[idx];
-  generatorStore.setMail(mail, idx);
-  router.push({ name: "generator" });
+  router.push({ name: "generator", params: { id: idx } });
 };
 
 const deleteMail = (idx: number) => {

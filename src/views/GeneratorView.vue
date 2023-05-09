@@ -21,11 +21,19 @@ import BaseButton from "@/components/buttons/BaseButton.vue";
 
 import { useGeneratorStore } from "@/data/store/generatorStore";
 import { useMailsStore } from "@/data/store/mailsStore";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import { onMounted } from "vue";
 
 const mailsStore = useMailsStore();
 const generatorStore = useGeneratorStore();
 const router = useRouter();
+
+onMounted(() => {
+  const route = useRoute();
+  const idx = parseInt(route.params.id.toString());
+  const mail = mailsStore.mails[idx];
+  generatorStore.setMail(mail, idx);
+});
 
 const backToHome = () => {
   generatorStore.resetMail();
